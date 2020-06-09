@@ -1,7 +1,7 @@
 # Учебный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Максим Боровик](https://up.htmlacademy.ru/react/4/user/1025673).
-* Наставник: `Неизвестно`.
+* Наставник: [Игорь Белогуров](https://htmlacademy.ru/profile/id1026635).
 
 ---
 
