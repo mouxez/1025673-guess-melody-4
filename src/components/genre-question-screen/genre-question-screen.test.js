@@ -20,7 +20,7 @@ const question = {
   }],
 };
 
-it(`GenreQuestionScreen is rendered correctly`, () => {
+test(`GenreQuestionScreen should rendered correctly`, () => {
   const tree = renderer.create((
     <GenreQuestionScreen
       question={question}
