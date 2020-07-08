@@ -7,7 +7,7 @@ const Mistakes = (props) => {
   const mistakes = new Array(count).fill(``);
 
   return (
-    <div className="game-mistakes">
+    <div className="game__mistakes">
       {mistakes.map((it, i) => <div key={`mistake-${i}`} className="wrong" />)}
     </div>
   );

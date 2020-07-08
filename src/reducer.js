@@ -4,7 +4,7 @@ import questions from './mocks/questions';
 
 const initialState = {
   mistakes: 0,
-  maxMistakes,
+  maxMistakes: 3,
   step: -1,
   questions,
 };
@@ -26,8 +26,10 @@ const isGenreAnswerCorrect = (question, userAnswer) => {
 
 const ActionCreator = {
   incrementStep: () => ({
+    type: ActionType.INCREMENT_STEP,
     payload: 1,
   }),
+
   incrementMistake: (question, userAnswer) => {
     let answerIsCorrect = false;
 
@@ -39,6 +41,7 @@ const ActionCreator = {
         answerIsCorrect = isGenreAnswerCorrect(question, userAnswer);
         break;
     }
+
     return {
       type: ActionType.INCREMENT_MISTAKES,
       payload: answerIsCorrect ? 0 : 1,
@@ -54,20 +57,25 @@ const reducer = (state = initialState, action) => {
       if (nextStep >= state.questions.length) {
         return extend({}, initialState);
       }
+
       return extend(state, {
         step: nextStep,
       });
+
     case ActionType.INCREMENT_MISTAKES:
       const mistakes = state.mistakes + action.payload;
 
       if (mistakes >= state.maxMistakes) {
         return extend({}, initialState);
       }
+
       return extend(state, {
         mistakes: state.mistakes + action.payload,
       });
   }
+
   return state;
 };
+
 
 export {reducer, ActionType, ActionCreator};

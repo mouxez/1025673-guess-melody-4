@@ -58,6 +58,7 @@ test(`Reducer should increment current step by a given value`, () => {
     mistakes: 0,
     questions,
   });
+
   expect(reducer({
     step: -1,
     mistakes: 0,
@@ -99,7 +100,7 @@ test(`Reducer should increment number of mistakes by a given value`, () => {
 describe(`Action creators should work correctly`, () => {
   test(`Action creator for incrementing step returns correct action`, () => {
     expect(ActionCreator.incrementStep()).toEqual({
-      type: ActionCreator.INCREMENT_STEP,
+      type: ActionType.INCREMENT_STEP,
       payload: 1,
     });
   });

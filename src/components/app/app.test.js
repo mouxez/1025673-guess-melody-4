@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app';
-import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
+import {App} from './app';
 
 const mockStore = configureStore([]);
 
@@ -65,7 +65,7 @@ describe(`Render App`, () => {
 
   test(`GenreQuestionScreen should render correctly`, () => {
     const store = mockStore({
-      mistake: 3,
+      mistakes: 3,
     });
 
     const tree = renderer.create(
@@ -77,8 +77,7 @@ describe(`Render App`, () => {
             onWelcomeButtonClick={() => {}}
             step={0}
           />
-        </Provider>
-        , {
+        </Provider>, {
           createNodeMock: () => {
             return {};
           }
@@ -89,7 +88,7 @@ describe(`Render App`, () => {
 
   test(`ArtistQuestionScreen should render correctly`, () => {
     const store = mockStore({
-      mistake: 3,
+      mistakes: 3,
     });
 
     const tree = renderer.create(
@@ -101,8 +100,7 @@ describe(`Render App`, () => {
             onWelcomeButtonClick={() => {}}
             step={1}
           />
-        </Provider>
-        , {
+        </Provider>, {
           createNodeMock: () => {
             return {};
           }
@@ -110,5 +108,4 @@ describe(`Render App`, () => {
 
     expect(tree).toMatchSnapshot();
   });
-
 });

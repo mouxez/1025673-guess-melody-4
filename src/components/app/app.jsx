@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
-import GenreQuestionScreen from '../genre-question-screen/genre-question-screen.jsx';
+import WelcomeScreen from '../welcome-screen/welcome-screen';
+import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GameScreen from '../game-screen/game-screen';
-import {GameType} from '../../const.js';
+import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player';
+import {GameType} from '../../const';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer';
 
@@ -15,7 +15,13 @@ const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 
 class App extends React.PureComponent {
   _renderGameScreen() {
-    const {maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step} = this.props;
+    const {
+      maxMistakes,
+      questions,
+      onUserAnswer,
+      onWelcomeButtonClick,
+      step,
+    } = this.props;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
@@ -30,7 +36,9 @@ class App extends React.PureComponent {
       switch (question.type) {
         case GameType.ARTIST:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+            >
               <ArtistQuestionScreenWrapped
                 question={question}
                 onAnswer={onUserAnswer}
@@ -39,7 +47,9 @@ class App extends React.PureComponent {
           );
         case GameType.GENRE:
           return (
-            <GameScreen type={question.type}>
+            <GameScreen
+              type={question.type}
+            >
               <GenreQuestionScreenWrapped
                 question={question}
                 onAnswer={onUserAnswer}
@@ -85,8 +95,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
-  maxMistakes: state.max.maxMistakes,
-  question: state.questions,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -100,4 +110,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
